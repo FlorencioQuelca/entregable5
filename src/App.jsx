@@ -1,13 +1,19 @@
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
-import Home from './components/Home'
+import Home from './pages/Home'
+import PokedexById from './pages/PokedexById'
+import Pokedex from './pages/Pokedex'
+import ProtectedRoutes from './pages/ProtectedRoutes'
 
 function App() {
   return (
     <div className="App">
        <Routes>
           <Route path='/' element={<Home/>} />
-          <Route path='/' element={<Home/>} />
+          <Route element={<ProtectedRoutes/>} >
+          <Route path='/pokedex/:id' element={<PokedexById/>} />
+          <Route path='/pokedex' element={<Pokedex/>} />
+          </Route>
        </Routes>
     </div>
   )
