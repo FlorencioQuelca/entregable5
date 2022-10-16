@@ -1,13 +1,11 @@
 .footer {
     height: 100px;
     width: 100%;
-    bottom: 0;
     position: absolute;
     background-color: var(--color-red);
     left: 0;
+    bottom: 0;
 }
-
-.footer__red {}
 
 .footer__black {
     height: 40px;
