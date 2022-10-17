@@ -18,19 +18,19 @@ const PokedexById = () => {
     <article className='detail'>
      <div className='container__principal'>
       <div className='detail__section1'>
-                <div className='section1__rect'>
+                <div className={`section1__rect bg-${pokemon?.types[0].type.name}`} >
                         <div className='section1__img'>
                           <img src={pokemon?.sprites.other['official-artwork'].front_default} alt="" />
                         </div>
 
                 </div>
         <div className="container-section1">
-          <p className='container__name'>#{pokemon?.id}</p>
+          <p className={`container__name letter-${pokemon?.types[0].type.name}`} >#{pokemon?.id}</p>
           <div className='section1__name'>
                   <div className='section1__line'>
                     <img src={line} alt="line" />
                   </div>
-               <h2 >{pokemon?.name.toUpperCase()}</h2>
+               <h2 className={`section1__name-text letter-${pokemon?.types[0].type.name}`}>{pokemon?.name}</h2>
                   <div className='section1__line' >
                     <img src={line} alt="line" />
                   </div>
@@ -47,17 +47,17 @@ const PokedexById = () => {
           </div>
           <div className='section1__ta'>
                   <div className="section1__types">
-                    <span>TYPE</span>
+                    <span >TYPE</span>
                     <div className='ta__types'>
                     {
                       pokemon?.types.map(type => (
-                              <span key={type.slot}> {type.type.name}</span>
+                              <span className={`border-${type.type.name}`} key={type.slot}> {type.type.name}</span>
                       ))
                     }
                     </div>
                   </div>
                   <div className="section1__hability">
-                        <span>ABILITIES</span>
+                        <span>SKILLS</span>
                         <div className='ta__hability'>
                         {
                           pokemon?.abilities.map(abilitie => (
@@ -88,8 +88,7 @@ const PokedexById = () => {
                       <span>{stat.stat.name}:</span>
                       <span>{stat.base_stat}/150</span>
                     </div>
-                    <div className='stat__bar'>
-
+                    <div className={`stat__bar star__bar--${stat.base_stat}`}>
                     </div>
                   </div>
                 ))

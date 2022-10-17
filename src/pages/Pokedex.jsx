@@ -7,7 +7,7 @@ const Pokedex = () => {
  const userName=useSelector(state =>state.userName)
  const [pokemons, setPokemons] = useState()
  useEffect(() => {
-   const url='https://pokeapi.co/api/v2/pokemon?limit=20&offset=0'
+   const url='https://pokeapi.co/api/v2/pokemon?limit=200&offset=0'
   // const url='https://pokeapi.co/api/v2/type/'
    axios.get(url).then(res=>setPokemons(res.data)).catch(e =>console.log(e))
  }, [])
