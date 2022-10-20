@@ -4,16 +4,24 @@ import { useParams } from 'react-router-dom'
 import './styles/pokemonId.css'
 import ball from '../assets/ball.png'
 import line from '../assets/line.png'
+import Pokemon404 from '../components/pokedexid/Pokemon404'
 const PokedexById = () => {
   const { id } = useParams()
   const [pokemon, setPokemon] = useState()
+  const [hasError, setHasError] = useState()
   useEffect(() => {
     const url = `https://pokeapi.co/api/v2/pokemon/${id}/`
     axios.get(url)
       .then(res => setPokemon(res.data))
-      .catch(e => console.log(e))
+      .catch(e => {
+        setHasError(true)
+        console.log(e)
+      }
+        )
   }, [])
-  console.log(pokemon);
+     if(hasError){
+      return <Pokemon404/>
+     }
   return (
     <article className='detail'>
      <div className='container__principal'>

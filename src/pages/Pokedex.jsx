@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import InputSearch from '../components/pokedex/InputSearch'
 import PokemonCard from '../components/pokedex/PokemonCard'
 import Pagination from './Pagination'
 import './styles/pokedex.css'
@@ -26,7 +27,11 @@ const Pokedex = () => {
         <h2>Pokedex</h2>
         <p>Welcome <span>{userName}</span>, here you can find your favorite pokemon</p>
       </header>
+
+
       <aside>
+             <InputSearch/>
+
            <Pagination  
            page={page}
            pagesLength={pokemons &&  Math.ceil(pokemons.length/pokePerPage)}
