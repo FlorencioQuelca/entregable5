@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import InputSearch from '../components/pokedex/InputSearch'
 import PokemonCard from '../components/pokedex/PokemonCard'
+import SelectedByType from '../components/pokedex/SelectedByType'
 import Pagination from './Pagination'
 import './styles/pokedex.css'
 const Pokedex = () => {
@@ -31,6 +32,7 @@ const Pokedex = () => {
 
       <aside>
              <InputSearch/>
+             <SelectedByType/>
 
            <Pagination  
            page={page}
