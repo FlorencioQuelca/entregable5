@@ -9,13 +9,24 @@ import './styles/pokedex.css'
 const Pokedex = () => {
  const userName=useSelector(state =>state.userName)
  const [pokemons, setPokemons] = useState()
+const [typeSelected, setTypeSelected] = useState('All Pokemons')
  useEffect(() => {
-   const url='https://pokeapi.co/api/v2/pokemon?limit=200&offset=0'
-  // const url='https://pokeapi.co/api/v2/type/'
-   axios.get(url).then(res=>setPokemons(res.data.results)).catch(e =>console.log(e))
- }, [])
-  console.log(pokemons)
+  if(typeSelected!=='All Pokemons'){
+    
+    axios.get(typeSelected).then(res=>{
+      console.log(res.data)
+      const result= res.data.pokemon.map(e=>e.pokemon)
+      setPokemons(result)
+    }).catch(e=>console.log(e))
+  }else{
 
+    const url='https://pokeapi.co/api/v2/pokemon?limit=200&offset=0'
+   // const url='https://pokeapi.co/api/v2/type/'
+    axios.get(url).then(res=>setPokemons(res.data.results)).catch(e =>console.log(e))
+  }
+
+ }, [typeSelected])
+ 
 
   //paginacion
   const [page, setPage] = useState(1)
@@ -28,12 +39,11 @@ const Pokedex = () => {
         <h2>Pokedex</h2>
         <p>Welcome <span>{userName}</span>, here you can find your favorite pokemon</p>
       </header>
-
-
       <aside>
              <InputSearch/>
-             <SelectedByType/>
-
+             <SelectedByType
+                 setTypeSelected={setTypeSelected}
+               />
            <Pagination  
            page={page}
            pagesLength={pokemons &&  Math.ceil(pokemons.length/pokePerPage)}
